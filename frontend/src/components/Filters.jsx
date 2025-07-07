@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import PropTypes from "prop-types"
 
@@ -7,7 +5,12 @@ function Filters({ onFilterChange }) {
   const [title, setTitle] = useState("")
   const [platform, setPlatform] = useState("")
 
-  const platforms = ["LinkedIn", "Wellfound", "Naukri", "Indeed", "Glassdoor", "Monster", "SimplyHired", "ZipRecruiter"]
+  constplatforms = [
+    "LinkedIn", "Wellfound", "Naukri", "Indeed", "Glassdoor", "Monster", 
+    "SimplyHired", "ZipRecruiter", "Shine", "TimesJobs", "CareerBuilder", 
+    "JobStreet", "Foundit", "Hirect", "AngelList", "Dice", "Jooble", 
+    "Internshala", "Freshersworld", "WorkIndia"
+  ]
 
   const handleSubmit = (e) => {
     e.preventDefault()
