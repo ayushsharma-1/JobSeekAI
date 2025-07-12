@@ -4,6 +4,6 @@ pymongo==4.6.1
 undetected-chromedriver==3.5.5
 beautifulsoup4==4.12.2
 sentence-transformers==2.2.2
+huggingface_hub==0.10.1
 nltk==3.8.1
-apscheduler==3.10.4
 python-dotenv==1.0.0

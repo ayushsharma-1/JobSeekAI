@@ -1,21 +1,16 @@
 #!/bin/bash
-# Install system dependencies
-sudo apt-get update
-sudo apt-get install -y chromium-chromedriver
 
-# Install Python dependencies
-cd backend
-pip install -r requirements.txt
-python -m nltk.downloader punkt stopwords
+# Check if Docker and Docker Compose are installed
+if ! command -v docker &> /dev/null || ! command -v docker-compose &> /dev/null; then
+  echo "Installing Docker and Docker Compose..."
+  sudo apt-get update
+  sudo apt-get install -y docker.io docker-compose
+  sudo systemctl start docker
+  sudo systemctl enable docker
+fi
 
-# Install Node.js dependencies
-cd ../frontend
-npm install
-
-# Start MongoDB, backend, and frontend
-cd ..
+# Start Docker Compose
+echo "Starting application with Docker Compose..."
 docker-compose up -d
 
-# Start scheduler in a separate process
-cd backend
-python -c "from src.scheduler import start_scheduler; start_scheduler(); import time; while True: time.sleep(60)"
+echo "Application started. Backend at http://localhost:8000, Frontend at http://localhost:3000"

@@ -1,29 +1,30 @@
-version: '3.8'
+version: '3.9'
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:
       - MONGO_URI=${MONGO_URI}
-      - CHROMEDRIVER_PATH=/usr/bin/chromedriver
+      - CHROMEDRIVER_PATH=/usr/lib/chromium/chromedriver
       - JOB_TITLES=${JOB_TITLES}
       - KEYWORDS=${KEYWORDS}
     volumes:
-      - ./backend/src:/app
-    depends_on:
-      - mongodb
+      - ./backend/src:/app/src:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
       - VITE_API_URL=http://backend:8000
-  mongodb:
-    image: mongo:6.0
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-volumes:
-  mongodb_data:
+    depends_on:
+      - backend

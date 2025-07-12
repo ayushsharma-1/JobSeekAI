@@ -5,10 +5,10 @@ function Filters({ onFilterChange }) {
   const [title, setTitle] = useState("")
   const [platform, setPlatform] = useState("")
 
-  constplatforms = [
-    "LinkedIn", "Wellfound", "Naukri", "Indeed", "Glassdoor", "Monster", 
-    "SimplyHired", "ZipRecruiter", "Shine", "TimesJobs", "CareerBuilder", 
-    "JobStreet", "Foundit", "Hirect", "AngelList", "Dice", "Jooble", 
+  const platforms = [
+    "LinkedIn", "Wellfound", "Naukri", "Indeed", "Glassdoor", "Monster",
+    "SimplyHired", "ZipRecruiter", "Shine", "TimesJobs", "CareerBuilder",
+    "JobStreet", "Foundit", "Hirect", "AngelList", "Dice", "Jooble",
     "Internshala", "Freshersworld", "WorkIndia"
   ]
 
